@@ -33,7 +33,7 @@
 
 -(NSString *)description
 {
-    return _species;
+    return [NSString stringWithFormat:@"I am a %@", _species];
 }
 
 - (void)setSpecies:(NSString *)species
