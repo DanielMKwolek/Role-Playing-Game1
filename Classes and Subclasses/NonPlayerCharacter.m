@@ -41,8 +41,11 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"I am a %@ and my AI Level is %@.", _species, @(_AILevel)];
+    return @"I am a Character with an AI Level";
 }
+
+
+
 
 
 

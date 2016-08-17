@@ -38,7 +38,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"I am a %@ and my playername is %@", _species, _playername];
+    return @"I am a Character with a playername";
 }
 
 

@@ -13,15 +13,15 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        Character *TestCharacter = [[Character alloc] initWithSpecies:@"Explicit Unknown species"];
+        Character *TestCharacter = [[Character alloc] initWithSpecies:@"Explicitly Unknown Species"];
         PlayerCharacter *TestPlayerCharacter = [[PlayerCharacter alloc] initWithSpecies:@"Human" Playername:@"Danny"];
         NonPlayerCharacter *TestNPC = [[NonPlayerCharacter alloc] initWithSpecies:@"Robot" AILevel:9001];
         
-        NSLog(@"TestCharacter: Hello, %@", TestCharacter);
-        NSLog(@"TestPlayerCharacter: Hello, %@", TestPlayerCharacter);
-        NSLog(@"TestNPC: Hello, %@", TestNPC);
+        NSLog(@"TestCharacter: Hello, %@ of %@", TestCharacter, [TestCharacter species]);
+        NSLog(@"TestPlayerCharacter: Hello, %@ of %@ and am a(n) %@", TestPlayerCharacter, [TestPlayerCharacter Playername], [TestPlayerCharacter species]);
+        NSLog(@"TestNPC: Hello, %@ of %@ and am a(n) %@\n\n", TestNPC, @([TestNPC AILevel]), [TestNPC species]);
         
-        [TestCharacter setSpecies:@"Explicit Known species"];
+        [TestCharacter setSpecies:@"Explicit Known Species"];
         
         [TestPlayerCharacter setPlayerName:@"Not Danny"];
         [TestPlayerCharacter setSpecies:@"Not Human"];
@@ -29,9 +29,9 @@ int main(int argc, const char * argv[]) {
         [TestNPC setSpecies:@"Not Robot"];
         [TestNPC setAILevel:9002];
         
-        NSLog(@"TestCharacter: Hello. Now, %@", TestCharacter);
-        NSLog(@"TestPlayerCharacter: Hello. Now, %@", TestPlayerCharacter);
-        NSLog(@"TestNPC: Hello. Now, %@", TestNPC);
+        NSLog(@"TestCharacter: Hello. Now, %@ of %@", TestCharacter, [TestCharacter species]);
+        NSLog(@"TestPlayerCharacter: Hello. Now, %@ of %@ and am a(n) %@", TestPlayerCharacter, [TestPlayerCharacter Playername], [TestPlayerCharacter species]);
+        NSLog(@"TestNPC: Hello. Now, %@ of %@ and am a(n) %@", TestNPC, @([TestNPC AILevel]), [TestNPC species]);
         
     }
     return 0;
