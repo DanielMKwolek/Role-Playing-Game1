@@ -17,7 +17,9 @@
 - (instancetype)initWithSpecies:(NSString *)species
                      Playername:(NSString *)Playername NS_DESIGNATED_INITIALIZER;
 
+
 - (NSString *)Playername;
 - (void)setPlayerName:(NSString *)playername;
+
 
 @end

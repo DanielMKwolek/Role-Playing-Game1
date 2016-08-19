@@ -18,6 +18,7 @@
     if (self)
     {
         _playername = Playername;
+        
     }
     return self;
 }
