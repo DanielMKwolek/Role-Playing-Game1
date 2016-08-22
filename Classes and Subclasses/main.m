@@ -90,17 +90,25 @@ int minirpg(void)
     sleeps(1);
     printf("At least you get to choose what class you want to be in some vain attempt at thinking you have any free will in this endeavor!\n\n");
     
-    char UserInputStringOne[20];
-    promptUserForString("What would you like to be called?\n: ", UserInputStringOne);
-    
-    char UserInputStringTwo[20];
-    promptUserForString("What is your speciesssssssssssss?\n: ", UserInputStringTwo);
+    printf("What species are you?\n: ");
+    char UserInputStringOne[21];
+    UserInputStringOne[20] = '\0';
+    fpurge(stdin);
+    scanf("%20s", UserInputStringOne);
+    printf("Your species is now: %s", UserInputStringOne);
+    printf("What is your name?\n: ");
+    char UserInputStringTwo[21];
+    UserInputStringOne[20] = '\0';
+    fpurge(stdin);
+    scanf("%20s", UserInputStringTwo);
+    printf("Your Name is now: %s", UserInputStringTwo);
+
     
     
     NSLog(@"You wrote: %s AND : %s", UserInputStringTwo, UserInputStringOne);
     int UserIntChoice = promptUserForInt(classmin, classmax, "What Class would you like to be?\nKnight: 1\nMage: 2\nRogue: 3\n");
     printf("You chose %d\n\n", UserIntChoice);
-    PlayerCharacter *Player = [[PlayerCharacter alloc]initWithSpecies:@("hello") Playername:@"(testname?)"];
+    PlayerCharacter *Player = [[PlayerCharacter alloc]initWithSpecies:@(UserInputStringOne) Playername:@(UserInputStringTwo)];
     switch(UserIntChoice)
     {
         case(knight):
@@ -161,49 +169,4 @@ int promptUserForInt(int minnum, int maxnum, char *prompt)
     
     } while (answer > maxnum || answer < minnum);
     return answer;
-}
-
-char getCharFromUser(void)
-{
-    char returnchar = '\0';
-    fpurge(stdin);
-    while (returnchar == '\0' || !isalpha(returnchar))
-    {
-        scanf("%1c", &returnchar);
-        fpurge(stdin);
-    }
-    return returnchar;
-}
-
-char promptUserForChar(char *prompt)
-{
-    char returnchar = '\0';
-    fpurge(stdin);
-    while (returnchar == '\0' || !isalpha(returnchar))
-    {
-        printf("%s", prompt);
-        scanf("%1c", &returnchar);
-        fpurge(stdin);
-    }
-    return returnchar;
-}
-
-void promptUserForString(char *prompt, char *stringaddress)
-{
-    char *returnString;
-    fpurge(stdin);
-    scanf("%20s", returnString);
-    stringcopy(stringaddress, returnString);
-}
-
-void stringcopy(char *destination,char *source)
-{
-    for (int i = 0; i < strlen(source); i++)
-    {
-        destination[i] = source[i];
-        if (source[i] == '\0') {
-            break;
-        }
-    }
-
 }
