@@ -30,7 +30,7 @@ enum playerClassInt{
 };
 int minirpg(void);
 void stringcopy(char *destination, char *source);
-
+void battleBetween(PlayerCharacter *one, EnemyRogue *two);
 
 int main(int argc, const char * argv[])
 {
@@ -87,8 +87,8 @@ int minirpg(void)
     //sleeps(12);
     
     printf("Whelp\n");
-    sleeps(8);
-    printf("At least you get to choose what class you want to be in some vain attempt at thinking you have any free will in this endeavor!\n\n");
+    sleeps(11);
+    printf("At least you get to choose what class you want to be in some vain attempt at thinking you have any free will in this meaningless endeavor!\n\n");
     
     printf("What species are you?\n: ");
     char UserInputStringOne[21];
@@ -128,44 +128,69 @@ int minirpg(void)
         }
     }
     [Player playerstats];
-    sleeps(5);
-    NSLog(@"\n\n\nYou are wandering through a forest contemplating your life when out of now where a dragon come swooping down!\n You ready your %@ all the while mentally preparing for this epic battle.", [Player weapon]);
-    sleeps(3);
-    printf("\nThe dragon promptly ignores you and flies onward, although some of it's caustic spit managed to fall on a nearby tree\n");
+    sleeps(7);
+    NSLog(@"\n\n\nYou are wandering through a forest contemplating your life when out of now where a dragon swoops down!\nYou ready your %@ all the while mentally preparing for this epic battle.", [Player weapon]);
+    sleeps(6);
+    printf("The dragon promptly ignores you and flies onward, although some of its caustic spit managed to fall on a nearby tree\n");
     sleeps(2);
-    printf("Oh No! That isn't just spit! It is a sentient slime monster!\nTis a good thing indeed that you prepared your weapons");
+    printf("Oh No! That isn't just spit! \nIt is a spit covered rogue!\nTis a good thing indeed that you prepared your weapons!");
     sleeps(5);
-    printf("\n\n\n\n\nPREPARE FOR BATTLE:");
-    NSInteger slimeattack = 0;
-    NSInteger slimedefense = 0;
-    NSInteger slimespeed = 0;
+    EnemyRogue *enemyone = [[EnemyRogue alloc] initWithSpecies:@"Human" AILevel:4];
+    battleBetween(Player, enemyone);
+    return promptUserForInt(0, 1, "\nWould you like to play again?\nNo: 0\nYes: 1\n");
+}
+
+
+
+void battleBetween(PlayerCharacter *fightee, EnemyRogue *enemy)
+{
+    while(([fightee health] > 0) && ([enemy health] > 0))
     {
-        if (slimespeed > [Player speed])
+        if ([fightee speed] > [enemy speed])
         {
-            [Player takeDamage:(slimeattack)];
-            printf("\nSlime Health: %ldl", (long)slimehealth);
-            slimehealth -= [Player attack];
-            printf("\nYou deal %ldl damage", ([Player attack] - slimedefense));
-            printf("\nSlime Health: %ldl", (long)slimehealth);
-        }else{
-            printf("\nSlime Health: %ldl", (long)slimehealth);
-            slimehealth -= [Player attack];
-            printf("\nYou deal %ldl damage", ([Player attack] - slimedefense));
-            printf("\nSlime Health: %ldl", (long)slimehealth);
-            [Player takeDamage:(slimeattack)];
-        }
-        if ([Player health] <= 0)
+            [enemy takeDamage:[fightee attack]];
+            NSLog(@"Your health: %@\nEnemy health: %@", @([fightee health]), @([enemy health]));
+            sleeps(2);
+            if ([enemy health] <= 0)
+            {
+                printf("Congratulations! You've defeated the enemy!");
+            }else
+            {
+                [fightee takeDamage:[enemy attack]];
+                NSLog(@"Your health: %@\nEnemy health: %@", @([fightee health]), @([enemy health]));
+                sleeps(2);
+                if ([fightee health] <= 0)
+                {
+                    printf("Oh No! You ded!\n\n");
+                }
+            }
+        }else
         {
-            return 0;
+            [fightee takeDamage:[enemy attack]];
+            NSLog(@"Your health: %@\nEnemy health: %@", @([fightee health]), @([enemy health]));
+            sleeps(2);
+            if ([fightee health] <= 0)
+            {
+                printf("Oh No! You ded!\n\n");
+            }else
+            {
+                [enemy takeDamage:[fightee attack]];
+                NSLog(@"Your health: %@\nEnemy health: %@", @([fightee health]), @([enemy health]));
+                sleeps(2);
+                if ([enemy health] <= 0)
+                {
+                    printf("Congratulations! You've defeated the enemy!");
+                }
+            }
         }
     }
-    printf("Congratulations, you beat the slime!");
-    
-    
-    
-    
-    return 0;
 }
+
+
+
+
+
+
 
 void sleeps(int sleeptime)
 {
