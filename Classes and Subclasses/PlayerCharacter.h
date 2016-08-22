@@ -13,6 +13,7 @@
 {
     NSString *_playername;
     NSString *_class;
+    NSString *_weapon;
     NSInteger _health;
     NSInteger _speed;
     NSInteger _defense;
@@ -22,7 +23,7 @@
 
 - (instancetype)initWithSpecies:(NSString *)species
                      Playername:(NSString *)Playername NS_DESIGNATED_INITIALIZER;
-
+- (NSString *)weapon;
 - (NSInteger)health;
 - (NSInteger)speed;
 - (NSInteger)actionp;
@@ -32,9 +33,13 @@
 - (NSString *)playername;
 - (void)setPlayerName:(NSString *)playername;
 
+- (void)takeDamage:(NSInteger)damage;
+
 - (void)setclass:(int)classvalue;
 
 - (NSString *)characterclass;
+
+- (void)playerstats;
 
 
 @end

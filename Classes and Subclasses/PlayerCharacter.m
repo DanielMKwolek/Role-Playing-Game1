@@ -40,6 +40,14 @@
                       Playername:@"Nameless"];
 }
 
+
+- (void)playerstats
+{
+    
+    NSLog(@"\nPlayername: %@\nSpecies: %@\nClass: %@\nWeapon: %@\nHealth: %@\nActionPoints: %@\nAttack: %@\nDefense: %@\nSpeed: %@", _playername, _species, _class, _weapon, @(_health), @(_action), @(_attack), @(_defense), @(_speed));
+}
+
+
 - (NSInteger)health
 {
     return _health;
@@ -91,6 +99,11 @@
     _health -= damagetaken;
 }
 
+- (NSString *)weapon
+{
+    return _weapon;
+}
+
 -(void)setclass:(int)classvalue
 {
     switch(classvalue)
@@ -100,9 +113,10 @@
             _health = 14 + arc4random_uniform(5);
             _speed = 3 + arc4random_uniform(5);
             _attack = 4 + arc4random_uniform(3);
-            _defense = 0 + arc4random_uniform(2);
+            _defense = 3 + arc4random_uniform(2);
             _action = 5;
             _class = @"Knight";
+            _weapon = @"Sword and Shield";
             break;
         }
         case(2):
@@ -113,6 +127,7 @@
             _defense = 0 + arc4random_uniform(2);
             _action = 5;
             _class = @"Mage";
+            _weapon = @"Oak Staff";
         }
         case(3):
         {
@@ -122,6 +137,7 @@
             _defense = 0 + arc4random_uniform(2);
             _action = 5;
             _class = @"Rogue";
+            _weapon = @"Trusty Daggers";
         }
     }
 }

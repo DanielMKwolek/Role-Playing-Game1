@@ -87,7 +87,7 @@ int minirpg(void)
     //sleeps(12);
     
     printf("Whelp\n");
-    sleeps(1);
+    sleeps(8);
     printf("At least you get to choose what class you want to be in some vain attempt at thinking you have any free will in this endeavor!\n\n");
     
     printf("What species are you?\n: ");
@@ -95,18 +95,15 @@ int minirpg(void)
     UserInputStringOne[20] = '\0';
     fpurge(stdin);
     scanf("%20s", UserInputStringOne);
-    printf("Your species is now: %s", UserInputStringOne);
+    printf("Your species is now: %s\n", UserInputStringOne);
     printf("What is your name?\n: ");
+    
     char UserInputStringTwo[21];
     UserInputStringOne[20] = '\0';
     fpurge(stdin);
     scanf("%20s", UserInputStringTwo);
-    printf("Your Name is now: %s", UserInputStringTwo);
-
-    
-    
-    NSLog(@"You wrote: %s AND : %s", UserInputStringTwo, UserInputStringOne);
-    int UserIntChoice = promptUserForInt(classmin, classmax, "What Class would you like to be?\nKnight: 1\nMage: 2\nRogue: 3\n");
+    printf("Your name is now: %s\n", UserInputStringTwo);
+    int UserIntChoice = promptUserForInt(classmin, classmax, "What class would you like to be?\nKnight: 1\nMage: 2\nRogue: 3\n");
     printf("You chose %d\n\n", UserIntChoice);
     PlayerCharacter *Player = [[PlayerCharacter alloc]initWithSpecies:@(UserInputStringOne) Playername:@(UserInputStringTwo)];
     switch(UserIntChoice)
@@ -130,7 +127,42 @@ int minirpg(void)
             break;
         }
     }
-    NSLog(@"%@", [Player species]);
+    [Player playerstats];
+    sleeps(5);
+    NSLog(@"\n\n\nYou are wandering through a forest contemplating your life when out of now where a dragon come swooping down!\n You ready your %@ all the while mentally preparing for this epic battle.", [Player weapon]);
+    sleeps(3);
+    printf("\nThe dragon promptly ignores you and flies onward, although some of it's caustic spit managed to fall on a nearby tree\n");
+    sleeps(2);
+    printf("Oh No! That isn't just spit! It is a sentient slime monster!\nTis a good thing indeed that you prepared your weapons");
+    sleeps(5);
+    printf("\n\n\n\n\nPREPARE FOR BATTLE:");
+    NSInteger slimeattack = 0;
+    NSInteger slimedefense = 0;
+    NSInteger slimespeed = 0;
+    {
+        if (slimespeed > [Player speed])
+        {
+            [Player takeDamage:(slimeattack)];
+            printf("\nSlime Health: %ldl", (long)slimehealth);
+            slimehealth -= [Player attack];
+            printf("\nYou deal %ldl damage", ([Player attack] - slimedefense));
+            printf("\nSlime Health: %ldl", (long)slimehealth);
+        }else{
+            printf("\nSlime Health: %ldl", (long)slimehealth);
+            slimehealth -= [Player attack];
+            printf("\nYou deal %ldl damage", ([Player attack] - slimedefense));
+            printf("\nSlime Health: %ldl", (long)slimehealth);
+            [Player takeDamage:(slimeattack)];
+        }
+        if ([Player health] <= 0)
+        {
+            return 0;
+        }
+    }
+    printf("Congratulations, you beat the slime!");
+    
+    
+    
     
     return 0;
 }
