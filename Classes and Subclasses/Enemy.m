@@ -2,7 +2,7 @@
 //  Enemy.m
 //  Classes and Subclasses
 //
-//  Created by Daniel Kwolek on 8/17/16.
+//  Created by Daniel Kwolek on 8/21/16.
 //  Copyright © 2016 Arcore. All rights reserved.
 //
 

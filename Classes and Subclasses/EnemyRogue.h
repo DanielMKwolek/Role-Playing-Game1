@@ -1,5 +1,5 @@
 //
-//  Knight.h
+//  Enemy.h
 //  Classes and Subclasses
 //
 //  Created by Daniel Kwolek on 8/17/16.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PlayerCharacter.h"
+#import "NonPlayerCharacter.h"
 
-@interface Knight : PlayerCharacter
+@interface EnemyRogue : NonPlayerCharacter
 {
     NSInteger _health;
     NSInteger _speed;
@@ -18,9 +18,8 @@
     NSInteger _attack;
 }
 
-
 - (instancetype)initWithSpecies:(NSString *)species
-                     Playername:(NSString *)Playername NS_DESIGNATED_INITIALIZER;
+                        AILevel:(NSInteger)AILevel NS_DESIGNATED_INITIALIZER;
 
 @property (readonly, nonatomic)NSInteger BaseAttack;
 @property (readonly, nonatomic)NSInteger BaseSpeed;
@@ -37,5 +36,4 @@
 - (void)NSLogClassStats;
 
 - (void)takeDamage:(NSInteger)damage;
-
 @end

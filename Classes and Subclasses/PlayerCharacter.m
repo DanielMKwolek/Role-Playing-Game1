@@ -11,30 +11,119 @@
 @implementation PlayerCharacter
 
 
-- (instancetype)initWithSpecies:(NSString *)species
-                     Playername:(NSString *)Playername
+- (instancetype)initWithSpecies:(NSString*)species
+                     Playername:(NSString*)playername
 {
     self = [super initWithSpecies:species];
     if (self)
     {
-        _playername = Playername;
-        
+        _playername = playername;
+        _health = -1;
+        _speed = -1;
+        _attack = -1;
+        _defense = -1;
+        _action = -1;
+        _class = @"Classless";
     }
     return self;
 }
 
+
+
+
+
+
+
 - (instancetype)initWithSpecies:(NSString *)species
 {
-    return [self initWithSpecies:species Playername:@"Nameless"];
+    return [self initWithSpecies:species
+                      Playername:@"Nameless"];
 }
 
-- (NSString *)Playername {
+- (NSInteger)health
+{
+    return _health;
+}
+
+- (NSInteger)speed
+{
+    return _speed;
+}
+
+- (NSInteger)actionp
+{
+    return _action;
+}
+
+- (NSInteger)attack
+{
+    return _attack;
+}
+
+- (NSInteger)defense
+{
+    return _defense;
+}
+
+- (NSString *)playername
+{
     return _playername;
+}
+
+- (NSString *)characterclass
+{
+    return _class;
 }
 
 - (void)setPlayerName:(NSString *)playername
 {
     _playername = playername;
+}
+- (void)takeAction:(NSInteger)actionp
+{
+    _action = actionp;
+}
+
+- (void)takeDamage:(NSInteger)damage
+{
+    NSInteger damagetaken = (MAX((damage-_defense),0));
+    NSLog(@"Damage taken = %@", @(damagetaken));
+    _health -= damagetaken;
+}
+
+-(void)setclass:(int)classvalue
+{
+    switch(classvalue)
+    {
+        case(1):
+        {
+            _health = 14 + arc4random_uniform(5);
+            _speed = 3 + arc4random_uniform(5);
+            _attack = 4 + arc4random_uniform(3);
+            _defense = 0 + arc4random_uniform(2);
+            _action = 5;
+            _class = @"Knight";
+            break;
+        }
+        case(2):
+        {
+            _health = 10 + arc4random_uniform(5);
+            _speed = 5 + arc4random_uniform(5);
+            _attack = 4 + arc4random_uniform(3);
+            _defense = 0 + arc4random_uniform(2);
+            _action = 5;
+            _class = @"Mage";
+        }
+        case(3):
+        {
+            _health = 12 + arc4random_uniform(5);
+            _speed = 7 + arc4random_uniform(5);
+            _attack = 2 + arc4random_uniform(3);
+            _defense = 0 + arc4random_uniform(2);
+            _action = 5;
+            _class = @"Rogue";
+        }
+    }
 }
 
 - (NSString *)description

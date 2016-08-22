@@ -1,26 +1,27 @@
 //
-//  Mage.m
+//  Enemy.m
 //  Classes and Subclasses
 //
 //  Created by Daniel Kwolek on 8/17/16.
 //  Copyright © 2016 Arcore. All rights reserved.
 //
 
-#import "Mage.h"
+#import "EnemyRogue.h"
 
-@implementation Mage
+@implementation EnemyRogue
 
 - (instancetype)initWithSpecies:(NSString *)species
-                     Playername:(NSString *)Playername
+                        AILevel:(NSInteger)ailevel
 {
     self = [super initWithSpecies:species
-                       Playername:Playername];
+                          AILevel:ailevel];
     if (self)
     {
-        _BaseSpeed = 7;
-        _BaseAttack = 5;
+        _AILevel = ailevel;
+        _BaseSpeed = 9;
+        _BaseAttack = 3;
         _BaseDefense = 0;
-        _BaseHealthPoints = 12;
+        _BaseHealthPoints = 14;
         _BaseActionPoints = 5;
         _health = (_BaseHealthPoints - 2) + arc4random_uniform(5);
         _speed = (_BaseSpeed  - 2) + arc4random_uniform(5);
@@ -51,6 +52,7 @@
                             ];
     NSLog(@"%@", totalstats);
 }
+
 - (void)takeDamage:(NSInteger)damage
 {
     NSInteger damagetaken = (MAX((damage-_defense),0));
